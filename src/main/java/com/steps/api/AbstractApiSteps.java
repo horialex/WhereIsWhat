@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.jayway.restassured.builder.MultiPartSpecBuilder;
 import com.jayway.restassured.builder.RequestSpecBuilder;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.specification.RequestSpecification;
@@ -22,7 +23,7 @@ public class AbstractApiSteps extends AbstractSteps{
 	private static RequestSpecification tokenSpec = null;
 	public static Map<String, String> extraHeaders = new HashMap<String, String>();
 	
-	public static RequestSpecification getSpecWithExtraHeaders(){
+public static RequestSpecification getSpecWithExtraHeaders(){
 		
 		tokenSpec = new RequestSpecBuilder()
 				.setContentType(ContentType.JSON)
@@ -33,6 +34,7 @@ public class AbstractApiSteps extends AbstractSteps{
 		
 		return tokenSpec;
 	}
+
 
 	protected static <T> T createResource (String path, Object requestBody, Class<T> responseClass) {
 		return given().relaxedHTTPSValidation()
@@ -73,5 +75,24 @@ public class AbstractApiSteps extends AbstractSteps{
 			.when().post(path)
 			.then()
 			.assertThat().statusCode(anyOf(is(201),is(204), is(200), is(302)));
+	}
+	
+	protected String uploadCSVResource (String path, String pathToFile, String fileName) {
+		 return given().relaxedHTTPSValidation()
+			.spec(getSpecWithExtraHeaders())
+			.multiPart(new MultiPartSpecBuilder(new File(pathToFile + fileName)).fileName(fileName).mimeType("application/vnd.ms-excel").build())
+			.when().post(path)
+			.then()
+			.assertThat().statusCode(anyOf(is(201),is(204), is(200), is(302)))
+		    .extract().response().asString();
+	}
+	
+	protected String createItemFromCSV(String path) {
+		 return given().relaxedHTTPSValidation()
+					.spec(getSpecWithExtraHeaders())
+					.when().post(path)
+					.then()
+					.assertThat().statusCode(anyOf(is(201),is(204), is(200), is(302)))
+				    .extract().response().asString();
 	}
 }

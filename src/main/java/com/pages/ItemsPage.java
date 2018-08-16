@@ -2,7 +2,9 @@ package com.pages;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.tools.utils.StringHelpers;
 
@@ -124,6 +126,26 @@ public class ItemsPage extends AbstractPage {
 				h.click();
 				break;
 			}
+		}
+	}
+	
+	public WebElement getItem(String itemName) {
+		List<WebElementFacade> itemList = itemsContainer
+				.thenFindAll(By.cssSelector("div[class='white-box clearfix single-item']"));
+		for (WebElementFacade item : itemList) {
+			String it = item.findBy(By.cssSelector("h3 a")).getText().trim();
+			if (it.contentEquals(itemName)) {
+				return item;
+			}
+		}
+		return null;
+	}
+
+	public void itemExists(String itemName, boolean expected) {
+		if (expected) {
+			Assert.assertNotNull("Item " + itemName + " was not found", getItem(itemName));
+		} else {
+			Assert.assertNull("Item " + itemName + " was found", getItem(itemName));
 		}
 	}
 }

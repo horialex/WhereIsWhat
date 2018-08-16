@@ -27,4 +27,9 @@ public class ItemSteps extends AbstractSteps {
 
 		SerenitySessionUtils.saveObjectListInSerenitySession(SerenityKeyConstants.BOOKINGS, booking);
 	}
+	
+	@Step
+	public void verifyItemIsPresent(String itemTitle) {
+		itemsPage.itemExists(itemTitle, true);
+	}
 }
