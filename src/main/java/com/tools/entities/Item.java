@@ -1,17 +1,23 @@
 package com.tools.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-//@JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL) 
 public class Item {
 	
     private String title;
-    private int categoryId;
+    private Integer categoryId;
     private Object[] customFields;
     private int id;
     private Category category;
+    
+    private String name;
+	private String itemTag;
+	private String description;
+	private String categoryTitle;
 
     public Category getCategory() {
         return category;
@@ -35,7 +41,7 @@ public class Item {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -49,11 +55,47 @@ public class Item {
     }
 
     @JsonProperty("id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
+    
+    @JsonProperty("Name")
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@JsonProperty("Item tag")
+	public String getItemTag() {
+		return itemTag;
+	}
+
+	public void setItemTag(String itemTag) {
+		this.itemTag = itemTag;
+	}
+
+	@JsonProperty("Description")
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@JsonProperty("Category")
+	public String getCategoryTitle() {
+		return categoryTitle;
+	}
+
+	public void setCategoryTitle(String categoryTitle) {
+		this.categoryTitle = categoryTitle;
+	}
 }
