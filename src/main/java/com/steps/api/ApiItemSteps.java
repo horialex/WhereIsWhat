@@ -54,10 +54,14 @@ public class ApiItemSteps extends AbstractApiSteps {
     	AbstractApiSteps.extraHeaders.put("Content-Type", "multipart/form-data");
     	
     	CSVWriters.writeCsv(items, EnvironmentConstants.CSV_RESOURCES + EnvironmentConstants.CSV_FILE);
-    	String fileName = uploadCSVResource(ApiUrlConstants.CSV_UPLOAD, EnvironmentConstants.CSV_RESOURCES, EnvironmentConstants.CSV_FILE);
-		JsonPath jsonPath = new JsonPath(fileName);
-		String fileProcessed = jsonPath.get("file");
-		createItemFromCSV(ApiUrlConstants.PROCESS_CSV_FILE + "?filename=" + fileProcessed + "&" + "category_id=" + null);
+    	
+    	String fileNameOnDisk = uploadCSVResource(ApiUrlConstants.CSV_UPLOAD, EnvironmentConstants.CSV_RESOURCES, EnvironmentConstants.CSV_FILE);
+		JsonPath jsonPath = new JsonPath(fileNameOnDisk);
+		String fileNameProcessed = jsonPath.get("file");
+		
+		
+		createItemFromCSV(ApiUrlConstants.PROCESS_CSV_FILE + "?filename=" + fileNameProcessed + "&" + "category_id=" + null);
+		
 		for(Item item : items) {
 			SerenitySessionUtils.saveObjectListInSerenitySession(SerenityKeyConstants.ITEMS, item);
 		}

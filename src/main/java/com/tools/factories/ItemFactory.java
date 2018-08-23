@@ -50,15 +50,19 @@ public class ItemFactory {
 		
 		for(int i=0; i<numberOfItems; i++) {
 			Item item = new Item();
+			//item clasic properties
 			item.setTitle("Item - " + FieldGenerator.generateStringValue(6, FieldGenerator.TypeOfString.ALPHANUMERIC));
 			item.setCustomFields(new Object[0]);
 			item.setCategoryId(category.getId());
 			item.setCategory(category);
 			
+			
+			//csv properties
 			item.setName(item.getTitle());
 			item.setItemTag(item.getTitle() + "_tag");
 			item.setDescription("Test item description");
 			item.setCategoryTitle(category.getName());
+			
 			items.add(item);
 		}
 		return items;
