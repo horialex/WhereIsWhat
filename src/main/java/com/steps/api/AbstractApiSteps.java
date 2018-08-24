@@ -6,9 +6,16 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.is;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.restassured.builder.MultiPartSpecBuilder;
 import com.jayway.restassured.builder.RequestSpecBuilder;
 import com.jayway.restassured.http.ContentType;
@@ -94,5 +101,21 @@ public static RequestSpecification getSpecWithExtraHeaders(){
 					.then()
 					.assertThat().statusCode(anyOf(is(201),is(204), is(200), is(302)))
 				    .extract().response().asString();
+	}
+	
+	protected <T> List<T> getResources(String path, Class<T> responseClass) throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		String json = "";
+		json = given().relaxedHTTPSValidation()
+					.spec(getSpecWithExtraHeaders())
+					.when().get(path)
+					.then()
+					.assertThat().statusCode(anyOf(is(201),is(204), is(200), is(302)))
+				    .extract().asString();
+		
+		@SuppressWarnings("unchecked")
+		Class<T[]> arrayClass = (Class<T[]>) Class.forName("[L" + responseClass.getName() + ";");
+		T[] objects = mapper.readValue(json, arrayClass);
+		return Arrays.asList(objects);
 	}
 }

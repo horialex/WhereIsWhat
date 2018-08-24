@@ -63,8 +63,12 @@ public class ApiItemSteps extends AbstractApiSteps {
 		createItemFromCSV(ApiUrlConstants.PROCESS_CSV_FILE + "?filename=" + fileNameProcessed + "&" + "category_id=" + null);
 		
 		for(Item item : items) {
+			//TODO search and hyedarte objects with id's using merge objects
+			List<Item> itemsResponse = getResources(ApiUrlConstants.ITEMS +"?title_or_code=" + item.getTitle() + "&category_id=" + item.getCategoryId() , Item.class);
+			item = (Item) InstanceUtils.mergeObjects(item, itemsResponse.get(0));
 			SerenitySessionUtils.saveObjectListInSerenitySession(SerenityKeyConstants.ITEMS, item);
 		}
+		
 		
     	AbstractApiSteps.extraHeaders.remove("Entity-Type");
 		AbstractApiSteps.extraHeaders.remove("Content-Type");
