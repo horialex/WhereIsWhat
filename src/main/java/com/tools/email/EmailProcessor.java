@@ -1,5 +1,7 @@
 package com.tools.email;
 
+import com.tools.entities.MailObject;
+
 public class EmailProcessor {
 
 	private EmailService emailService;
@@ -8,12 +10,8 @@ public class EmailProcessor {
 		this.emailService = emailService;
 	}
 
-	public void readEmail() {
-		this.emailService.readMessage();
-	}
-	
-	public void sendEmail() {
-		this.emailService.sendMessage();
+	public MailObject readEmail() {
+		return this.emailService.readEmail();
 	}
 	
 }
