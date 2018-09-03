@@ -1,6 +1,6 @@
 package com.tools.entities;
 
-public class MailObject {
+public class Mail {
 
 	private String sender;
 	private String subject;

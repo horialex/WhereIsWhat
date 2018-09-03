@@ -16,14 +16,14 @@ import javax.mail.internet.MimeMultipart;
 
 import org.jsoup.Jsoup;
 
-import com.tools.entities.MailObject;
+import com.tools.entities.Mail;
 
 public class GmailService implements EmailService {
 
 
 	@Override
-	public MailObject readEmail() {
-		MailObject mailObject = new MailObject();
+	public Mail readEmail() {
+		Mail mailObject = new Mail();
 		String host = "pop.gmail.com";// change accordingly
 		String mailStoreType = "pop3";
 		String user = "alexandruhoratiu27@gmail.com";// change accordingly

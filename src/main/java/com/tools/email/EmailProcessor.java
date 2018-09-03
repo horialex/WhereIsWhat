@@ -1,6 +1,6 @@
 package com.tools.email;
 
-import com.tools.entities.MailObject;
+import com.tools.entities.Mail;
 
 public class EmailProcessor {
 
@@ -10,7 +10,7 @@ public class EmailProcessor {
 		this.emailService = emailService;
 	}
 
-	public MailObject readEmail() {
+	public Mail readEmail() {
 		return this.emailService.readEmail();
 	}
 	

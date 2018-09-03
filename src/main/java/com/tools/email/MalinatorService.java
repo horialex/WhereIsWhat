@@ -1,12 +1,12 @@
 package com.tools.email;
 
-import com.tools.entities.MailObject;
+import com.tools.entities.Mail;
 
 public class MalinatorService implements EmailService {
 
 	@Override
-	public MailObject readEmail() {
-		MailObject mailObject = new MailObject();
+	public Mail readEmail() {
+		Mail mailObject = new Mail();
 		return mailObject;
 	}
 

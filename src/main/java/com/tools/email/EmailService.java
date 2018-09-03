@@ -1,7 +1,7 @@
 package com.tools.email;
 
-import com.tools.entities.MailObject;
+import com.tools.entities.Mail;
 
 public interface EmailService {
-	public MailObject readEmail();
+	public Mail readEmail();
 }
