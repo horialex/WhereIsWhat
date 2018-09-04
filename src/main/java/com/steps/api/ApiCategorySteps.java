@@ -1,7 +1,11 @@
 package com.steps.api;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.tools.constants.ApiUrlConstants;
 import com.tools.constants.SerenityKeyConstants;
+import com.tools.entities.CategoriesCollection;
 import com.tools.entities.Category;
 import com.tools.factories.CategoryFactory;
 import com.tools.utils.InstanceUtils;
@@ -20,5 +24,15 @@ public class ApiCategorySteps extends AbstractApiSteps {
 
 		categoryRequest = (Category) InstanceUtils.mergeObjects(categoryRequest, categoryResponse);
 		SerenitySessionUtils.putOnSession(SerenityKeyConstants.CATEGORY, categoryRequest);
+	}
+	
+	@Step
+	public void removeAllCategories() {
+		CategoriesCollection[] categories = getResource(ApiUrlConstants.CATEGORIES + "?perPage=9999", CategoriesCollection[].class);
+		List<CategoriesCollection> pojoList = Arrays.asList(categories);
+		pojoList.forEach(s -> {
+			deleteResource(ApiUrlConstants.CATEGORIES,  s.getId());
+		});
+		
 	}
 }

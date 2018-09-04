@@ -1,5 +1,6 @@
 package com.tests;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -16,10 +17,12 @@ public class CreateCategoryTest extends BaseTest {
     public ApiLoginSteps apiLoginStepsSteps;
     @Steps
     ApiCategorySteps apiCategoryStepsSteps;
+    
 
     @Test
     public void createCategory() throws Exception {
         apiLoginStepsSteps.loginAsAdmin();
+        apiCategoryStepsSteps.removeAllCategories();
         apiCategoryStepsSteps.createCategory();
     }
 }
