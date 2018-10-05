@@ -72,11 +72,11 @@
 			<version>${serenity.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+		 <dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
-			<scope>test</scope>
+			<!-- <scope>test</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>com.jayway.restassured</groupId>
@@ -108,11 +108,11 @@
 			<artifactId>spring-web</artifactId>
 			<version>5.0.7.RELEASE</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>RELEASE</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-csv</artifactId>
@@ -195,7 +195,7 @@
 					<includes>
 						<include>**/*Test.java</include>
 					</includes>
-					<skip>true</skip>
+					<skip>false</skip>
 					<systemPropertyVariables>
 						<webdriver.driver>${webdriver.driver}</webdriver.driver>
 						<webdriver.chrome.driver>${webdriver.chrome.path}</webdriver.chrome.driver>

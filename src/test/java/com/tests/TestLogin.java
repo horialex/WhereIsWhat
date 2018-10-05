@@ -10,7 +10,7 @@ import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
 
 @RunWith(SerenityRunner.class)
-public class LoginTest extends BaseTest {
+public class TestLogin extends BaseTest {
     @Steps
     public ApiLoginSteps apiLoginStepsSteps;
 
