@@ -207,7 +207,7 @@
 					</includes>
 					<systemPropertyVariables>
 						<webdriver.driver>${webdriver.driver}</webdriver.driver>
-						<webdriver.chrome.driver>${webdriver.chrome.path}</webdriver.chrome.driver>
+						<!-- <webdriver.chrome.driver>${webdriver.chrome.path}</webdriver.chrome.driver> -->
 					</systemPropertyVariables>
 				</configuration>
 				<executions>
