@@ -178,7 +178,7 @@
 			</activation>
 			<properties>
 				<!-- <webdriver.chrome.path>${basedir}${file.separator}src${file.separator}test/${file.separator}resources${file.separator}drivers${file.separator}chromedriverlinux237</webdriver.chrome.path>  -->
-				  <webdriver.chrome.path>/opt/chromedriver-2.39</webdriver.chrome.path>   
+				  <webdriver.chrome.path>/opt/chromedriver-2.42</webdriver.chrome.path>   
 			</properties>
 		</profile>
 	</profiles>
