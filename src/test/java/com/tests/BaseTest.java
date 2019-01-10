@@ -1,9 +1,9 @@
 package com.tests;
 
-import net.thucydides.core.annotations.Managed;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+
+import net.thucydides.core.annotations.Managed;
 
 public class BaseTest {
 	@Managed(uniqueSession = true)
