@@ -1,9 +1,9 @@
 package com.tests;
 
-import net.thucydides.core.annotations.Managed;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+
+import net.thucydides.core.annotations.Managed;
 
 public class BaseTest {
 	@Managed(uniqueSession = true)
@@ -15,7 +15,7 @@ public class BaseTest {
 //		System.setProperty("http.proxyPort", "8080");
 //		System.setProperty("https.proxyHost", "localhost");
 //		System.setProperty("https.proxyPort", "8080");
-		System.setProperty("env", "qa-env");
+//		System.setProperty("env", "qa-env");
 
 	}
 
