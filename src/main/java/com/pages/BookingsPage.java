@@ -5,11 +5,11 @@ import java.util.List;
 
 import com.tools.constants.EntityConstants;
 import com.tools.entities.Item;
-import org.openqa.selenium.By;
 
 import com.tools.entities.Booking;
 import com.tools.entities.User;
 
+import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 
